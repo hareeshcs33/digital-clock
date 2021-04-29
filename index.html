@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .clock-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .inner-body{
+            min-width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+            border: 10px solid;
+            border-image-slice: 1;
+            border-width: 10px;
+            border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+        }
+
+        .clock{
+            font-size: 4em;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 72px;
+            background: linear-gradient(to left, #743ad5, #d53a9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .clock span {
+            padding: 20px 15px;
+            max-width: 130px;
+            min-width: 130px;
+        }
+        h4 {
+            width: 100%;
+            text-transform: uppercase;
+            text-align: center;
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            background: linear-gradient(to left, #743ad5, #d53a9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <h4>Digital Clock</h4>
+    <div class="clock-body">
+        <div class="inner-body">
+            <div class="clock"></div>
+        </div>
+    </div>
+
+    <script>
+        const clock = document.querySelector('.clock');
+        const tickingClock = () => {
+            const date = new Date();
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const seconds = date.getSeconds();
+
+            const tickingClockText = `
+            <span>${hours < 10 ? "0"+ hours : hours}</span>:
+            <span>${minutes < 10 ? "0" + minutes : minutes}</span>:
+            <span>${seconds < 10 ? "0" + seconds : seconds}</span>`;
+            
+            clock.innerHTML = tickingClockText;
+        }
+        setInterval(tickingClock, 1000);
+    </script>
+</body>
